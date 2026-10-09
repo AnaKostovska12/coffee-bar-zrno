@@ -15,7 +15,7 @@ services:
 
   wordpress:
     build: .
-    cpus: 0.5
+    cpus: 0.2
     mem_limit: 512m
     depends_on:
       - db
