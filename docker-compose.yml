@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.db
-    cpus: 0.1
+    cpus: 0.2
     mem_limit: 256m
     environment:
       MYSQL_DATABASE: wordpress
