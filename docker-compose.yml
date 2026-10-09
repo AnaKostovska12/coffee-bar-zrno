@@ -1,0 +1,27 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    cpus: 0.5
+    mem_limit: 512m
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ./.stack-data/db:/var/lib/mysql
+
+  wordpress:
+    build: .
+    cpus: 0.5
+    mem_limit: 512m
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_CONFIG_EXTRA: "define('WP_HOME','${SITE_URL:-http://localhost}'); define('WP_SITEURL','${SITE_URL:-http://localhost}');"
