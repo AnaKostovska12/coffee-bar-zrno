@@ -25,5 +25,3 @@ services:
       WORDPRESS_DB_USER: wpuser
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
       WORDPRESS_CONFIG_EXTRA: "define('WP_HOME','${SITE_URL:-http://localhost}'); define('WP_SITEURL','${SITE_URL:-http://localhost}');"
-    volumes:
-      - ./.stack-data/uploads:/var/www/html/wp-content/uploads
